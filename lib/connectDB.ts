@@ -32,6 +32,5 @@ export async function connectToDatabase() {
 
   cachedClient = client;
   cachedDb = db;
-  console.log("DB CONNECTED", uri, dbName);
   return { client, db };
 }

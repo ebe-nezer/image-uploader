@@ -7,7 +7,6 @@ export const getImage = async (
   req: NextApiRequest & { [key: string]: string },
   res: NextApiResponse
 ) => {
-  console.log(req.query);
   const { client, db } = await connectToDatabase();
   const { id } = req.query;
   const _id = new mongo.ObjectId(id.toString());
