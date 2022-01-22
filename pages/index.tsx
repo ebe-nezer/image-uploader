@@ -172,6 +172,7 @@ const Home: NextPage = () => {
     setUploading(e);
     setStatus({ str: "", type: "" });
   };
+  console.log(process.env);
   // alert(finalLink)
   return (
     <Container>
