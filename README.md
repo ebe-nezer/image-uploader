@@ -8,7 +8,7 @@
 
 <div align="center">
   <h3>
-    <a href="https://image-uploader-alpha.vercel.app">
+    <a href="https://image-uploader-ebi10sa22.vercel.app/">
       Demo
     </a>
     <span> | </span>
@@ -42,7 +42,7 @@
 ![screenshot](https://raw.githubusercontent.com/ebi10sa22/image-uploader/master/demo/images/uploaded.png?token=GHSAT0AAAAAABQXENDXYN4PONBQPA2AF5V2YP3R4QQ)
 Upload your image and turn your image to a link and share to the world.
 
-- Demo - <a href="https://image-uploader-alpha.vercel.app">Click</a>
+- Demo - <a href="https://image-uploader-ebi10sa22.vercel.app/">Click</a>
 - Experience in building this project was awesome and intresting.
 - I have learned about the NextJS framework and got some new knowledge on frontend & I wanted to improve my UI Skills in future.
 
