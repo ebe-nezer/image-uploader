@@ -28,10 +28,13 @@ export const getImage = async (
             err: "No file Exists",
           });
         }
+        if (!fs.existsSync("./uploads")) {
+          fs.mkdirSync("./uploads");
+        }
         // res.setHeader("Content-Type", files[0].contentType);
         bucket
           .openDownloadStream(_id)
-          .pipe(fs.createWriteStream("./public/uploads/" + files[0].filename))
+          .pipe(fs.createWriteStream("./uploads/" + files[0].filename))
           .on("error", ({ message }) => {
             // console.error(err.message)
             res.status(404).json({ message });
