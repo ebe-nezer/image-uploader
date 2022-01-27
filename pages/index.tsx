@@ -22,6 +22,7 @@ import Upload from "../components/Upload";
 import ToggleDarkMode from "../components/ToggleDarkMode";
 import { toast } from "react-toastify";
 import { getThemeContext } from "../context/ThemeContext";
+import { useRouter } from "next/router";
 
 interface AxoisData extends AxiosResponse {
   data: {
@@ -64,6 +65,7 @@ const Home: NextPage = () => {
         setStatus({ str: "", type: "" });
       })
       .catch((err) => {
+        console.log(err);
         setStatus({ str: "Cannot able to generate link", type: "Error" });
       });
   };
@@ -107,6 +109,8 @@ const Home: NextPage = () => {
       .then(({ status, data }: AxoisData) => {
         if (status === 200 || status === 201) {
           setStatus({ str: "File Uploaded", type: "Uploaded" });
+
+          console.log("/api/image?id=" + data.file.id.toString());
           createLink("/api/image?id=" + data.file.id.toString());
           setStatus({
             type: "Generating Link",
@@ -150,11 +154,9 @@ const Home: NextPage = () => {
       });
     }
   };
-
   const onTargetClickFunc = () => {
     fileRef.current.click();
   };
-
   const onFileInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     const data = new FormData();
     const { files } = event.target;
@@ -168,12 +170,11 @@ const Home: NextPage = () => {
     setStatus({ str: "Uploading file", type: "Uploading" });
     data.get("files") && uploadFiles(data);
   };
-
   const uploadstatus = (e: boolean) => {
     setUploading(e);
     setStatus({ str: "", type: "" });
   };
-
+  // alert(finalLink)
   return (
     <Container>
       {uploading && (
@@ -210,11 +211,12 @@ const Home: NextPage = () => {
             <FileDrop
               dropEffect="move"
               onFrameDragEnter={() => setTrack(true)}
-              onDragOver={(a) => console.log("Over")}
+              onDragOver={(a) => console.log(a)}
               onTargetClick={onTargetClickFunc}
-              onDrop={(files) => {
+              onDrop={(files, event) => {
                 setFile(files);
                 onDropFunc();
+                // console.log(files);
               }}
               onDragLeave={() => console.log("leaved")}
               onFrameDragLeave={() => setTrack(false)}

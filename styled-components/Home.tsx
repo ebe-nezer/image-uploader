@@ -40,8 +40,10 @@ export const Container = styled.div`
   height: 470px;
   background-color: ${basic};
   box-shadow: ${shadowColor};
-
   border-radius: 10px;
+  @media only screen and (min-width: 360px) {
+    width: 90%;
+  }
 `;
 
 export const InnerContainer = styled.div`
@@ -56,6 +58,9 @@ export const InnerContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media only screen and (max-width: 360px) {
+    width: 100%;
+  }
 `;
 
 export const Header = styled.div`

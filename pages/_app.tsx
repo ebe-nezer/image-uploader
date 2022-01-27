@@ -1,9 +1,11 @@
 import type { AppProps } from "next/app";
 import Head from "next/head";
+import React from "react";
 import Layout from "../components/Layout";
 import ThemeContextProvider from "../context/ThemeContext";
 
 function MyApp({ Component, pageProps }: AppProps) {
+  
   return (
     <ThemeContextProvider>
       <Layout>
