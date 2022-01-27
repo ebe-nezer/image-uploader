@@ -200,7 +200,7 @@ const Home: NextPage = () => {
           {imageLink !== undefined ? (
             <ShowImage>
               <Image
-                src={"/" + finalLink}
+                src={"/tmp/" + finalLink}
                 alt="Image Alt"
                 // src={`/${router.query.id}`}
                 layout="fill"

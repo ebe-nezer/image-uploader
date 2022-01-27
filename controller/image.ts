@@ -31,7 +31,7 @@ export const getImage = async (
         // res.setHeader("Content-Type", files[0].contentType);
         bucket
           .openDownloadStream(_id)
-          .pipe(fs.createWriteStream("./" + files[0].filename))
+          .pipe(fs.createWriteStream("./tmp/" + files[0].filename))
           .on("error", ({ message }) => {
             // console.error(err.message)
             res.status(404).json({ message });
