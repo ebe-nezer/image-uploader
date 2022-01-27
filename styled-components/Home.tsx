@@ -37,7 +37,7 @@ export const Container = styled.div`
   padding: 44px 30px;
 
   width: 400px;
-  height: 400px;
+  height: 440px;
   background-color: ${basic};
   box-shadow: ${shadowColor};
   border-radius: 10px;
@@ -48,7 +48,7 @@ export const Container = styled.div`
 
 export const InnerContainer = styled.div`
   width: 340px;
-  height: 400px;
+  height: max-content;
 
   /* Inside auto layout */
 
@@ -58,6 +58,7 @@ export const InnerContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content
   @media only screen and (max-width: 360px) {
     width: 100%;
   }
@@ -185,6 +186,7 @@ export const InputBar = styled.div`
   height: 46px;
   min-height: 46px;
   margin-top: 20px;
+  margin-bottom: 20px;
   border: 1px solid ${borderColor};
   display: flex;
   border-radius: 10px;

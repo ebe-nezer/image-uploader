@@ -8,11 +8,11 @@
 
 <div align="center">
   <h3>
-    <a href="https://{your-demo-link.your-domain}">
+    <a href="https://image-uploader-alpha.vercel.app">
       Demo
     </a>
     <span> | </span>
-    <a href="https://{your-url-to-the-solution}">
+    <a href="https://github.com/ebi10sa22/image-uploader">
       Solution
     </a>
     <span> | </span>
@@ -41,7 +41,7 @@
 
 Upload your image and turn your image to a link and share to the world.
 
-- Demo - <a href="">Click</a>
+- Demo - <a href="https://image-uploader-alpha.vercel.app">Click</a>
 - Experience in building this project was awesome and intresting.
 - I have learned about the NextJS framework and got some new knowledge on frontend & I wanted to improve my UI Skills in future.
 
@@ -51,7 +51,6 @@ Upload your image and turn your image to a link and share to the world.
 
 - [NextJs](https://nextjs.org/)
 - [MongoDb](https://www.mongodb.com/)
-- [Styled-Components](https://styled-components.com/)
 
 ## Features
 
@@ -82,6 +81,14 @@ $ yarn add
 $ yarn dev
 ```
 
+## Contact
+
+<!-- - Website [your-website.com](https://{your-web-site-link}) -->
+
+- GitHub [@yebi10sa22](https://github.com/ebi10sa22)
+- Linkedin [@ebenezerj-2210](https://www.linkedin.com/in/ebenezerj-2210/)
+- Instagram [@_._._ebenezer_._._](https://www.instagram.com/_._._ebenezer_._._/)
+
 ## Acknowledgements
 
 <!-- This section should list any articles or add-ons/plugins that helps you to complete the project. This is optional but it will help you in the future. For example -->
@@ -89,11 +96,3 @@ $ yarn dev
 - [Steps to replicate a design with only HTML and CSS](https://devchallenges-blogs.web.app/how-to-replicate-design/)
 - [Node.js](https://nodejs.org/)
 - [Marked - a markdown parser](https://github.com/chjj/marked)
-
-## Contact
-
-<!-- - Website [your-website.com](https://{your-web-site-link}) -->
-
-- GitHub [@your-username](https://github.com/ebi10sa22)
-- Linkedin [@ebenezerj-2210](https://www.linkedin.com/in/ebenezerj-2210/)
-- Instagram [@_._._ebenezer_._._](https://www.instagram.com/_._._ebenezer_._._/)

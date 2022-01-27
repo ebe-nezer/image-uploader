@@ -56,7 +56,7 @@ const Home: NextPage = () => {
         });
         const url =
           process.env.NODE_ENV === "production"
-            ? "https://image-upload.vercel.com/image/"
+            ? "https://image-uploader-alpha.vercel.app/image/"
             : "http://localhost:3000/image/";
 
         setFinalLink(data.metadata.filename);
