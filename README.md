@@ -37,8 +37,9 @@
 
 ## Overview
 
-![screenshot](https://user-images.githubusercontent.com/16707738/92399059-5716eb00-f132-11ea-8b14-bcacdc8ec97b.png)
-
+![screenshot](https://raw.githubusercontent.com/ebi10sa22/image-uploader/master/demo/images/demo.png?token=GHSAT0AAAAAABQXENDWNF5CQZLDS2IBWXFCYP3R3XA)
+![screenshot](https://raw.githubusercontent.com/ebi10sa22/image-uploader/master/demo/images/uploading.png?token=GHSAT0AAAAAABQXENDX7HJ2HMUNTTN4LKKQYP3R4FQ)
+![screenshot](https://raw.githubusercontent.com/ebi10sa22/image-uploader/master/demo/images/uploaded.png?token=GHSAT0AAAAAABQXENDXYN4PONBQPA2AF5V2YP3R4QQ)
 Upload your image and turn your image to a link and share to the world.
 
 - Demo - <a href="https://image-uploader-alpha.vercel.app">Click</a>
