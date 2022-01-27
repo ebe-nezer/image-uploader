@@ -56,7 +56,7 @@ const Home: NextPage = () => {
         });
         const url =
           process.env.NODE_ENV === "production"
-            ? "https://image-uploader-alpha.vercel.app/image/"
+            ? "https://image-uploader-ebi10sa22.vercel.app/image/"
             : "http://localhost:3000/image/";
 
         setFinalLink(data.metadata.filename);
@@ -110,7 +110,7 @@ const Home: NextPage = () => {
         if (status === 200 || status === 201) {
           setStatus({ str: "File Uploaded", type: "Uploaded" });
 
-          console.log("/api/image?id=" + data.file.id.toString());
+          // console.log("/api/image?id=" + data.file.id.toString());
           createLink("/api/image?id=" + data.file.id.toString());
           setStatus({
             type: "Generating Link",
