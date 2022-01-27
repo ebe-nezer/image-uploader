@@ -38,22 +38,15 @@ export const getImage = async (
           })
           .on("finish", () => {
             let { metadata } = files[0];
-            return res
-              .status(201)
-              .setHeader(
-                "Content-Type",
-                typeof files[0].contentType === "string"
-                  ? files[0].contentType?.toString()
-                  : ""
-              )
-              .json({
-                id: files[0]._id,
-                metadata,
-                messge:
-                  "File with id: " +
-                  files[0]._id +
-                  " has downloaded. Check your public folder to view the image.",
-              });
+            // res.setHeader("Content-Type", files[0].contentType?.toString());
+            return res.status(201).json({
+              id: files[0]._id,
+              metadata,
+              messge:
+                "File with id: " +
+                files[0]._id +
+                " has downloaded. Check your public folder to view the image.",
+            });
           });
         // } else {
         //   return res
