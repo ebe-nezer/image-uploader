@@ -41,7 +41,7 @@ export const Container = styled.div`
   background-color: ${basic};
   box-shadow: ${shadowColor};
   border-radius: 10px;
-  @media only screen and (min-width: 360px) {
+  @media only screen and (max-width: 360px) {
     width: 90%;
   }
 `;
