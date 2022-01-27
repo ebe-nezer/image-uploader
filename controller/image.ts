@@ -14,43 +14,39 @@ export const getImage = async (
     .connect()
     .then(() => {
       const bucket = new mongo.GridFSBucket(db, {
-        bucketName: "uploads",
         chunkSizeBytes: 1024,
+        bucketName: "uploads",
       });
-      bucket.find({ _id }).toArray((err, files) => {
-        if (!files || typeof files === undefined || typeof files === null) {
+      bucket.find({ _id: _id }).toArray((err, files) => {
+        if (
+          !files ||
+          typeof files === undefined ||
+          typeof files === null ||
+          files.length === 0
+        ) {
           return res.status(404).json({
             err: "No file Exists",
           });
         }
-        const fileTypesAvailable = [
-          "image/jpeg",
-          "image/jpg",
-          "image/png",
-          "image/gif",
-          "image/svg",
-          "image/webp",
-          "image/apng",
-          "image/avif",
-          "image/bmp",
-          "image/ico",
-          "image/tiff",
-        ];
-        const fileType = files[0].contentType
-          ? files[0].contentType.toString()
-          : "";
-        if (fileTypesAvailable.includes(fileType)) {
-          res.setHeader("Content-Type", fileType);
-          bucket
-            .openDownloadStream(_id)
-            .pipe(fs.createWriteStream("./public/" + files[0].filename))
-            .on("error", ({ message }) => {
-              // console.error(err.message)
-              res.status(404).json({ message });
-            })
-            .on("finish", () => {
-              let { metadata } = files[0];
-              return res.status(201).json({
+        // res.setHeader("Content-Type", files[0].contentType);
+        bucket
+          .openDownloadStream(_id)
+          .pipe(fs.createWriteStream("./public/" + files[0].filename))
+          .on("error", ({ message }) => {
+            // console.error(err.message)
+            res.status(404).json({ message });
+          })
+          .on("finish", () => {
+            let { metadata } = files[0];
+            return res
+              .status(201)
+              .setHeader(
+                "Content-Type",
+                typeof files[0].contentType === "string"
+                  ? files[0].contentType?.toString()
+                  : ""
+              )
+              .json({
                 id: files[0]._id,
                 metadata,
                 messge:
@@ -58,12 +54,12 @@ export const getImage = async (
                   files[0]._id +
                   " has downloaded. Check your public folder to view the image.",
               });
-            });
-        } else {
-          return res
-            .status(401)
-            .json({ message: "Oops.., found an Non-Image file :(" });
-        }
+          });
+        // } else {
+        //   return res
+        //     .status(401)
+        //     .json({ message: "Oops.., found an Non-Image file :(" });
+        // }
       });
     })
     .catch((err) => {
