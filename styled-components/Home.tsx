@@ -37,7 +37,7 @@ export const Container = styled.div`
   padding: 44px 30px;
 
   width: 400px;
-  height: 470px;
+  height: 400px;
   background-color: ${basic};
   box-shadow: ${shadowColor};
   border-radius: 10px;

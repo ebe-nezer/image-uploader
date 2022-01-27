@@ -1,11 +1,11 @@
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import React from "react";
+import FooterLine from "../components/FooterLine";
 import Layout from "../components/Layout";
 import ThemeContextProvider from "../context/ThemeContext";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  
   return (
     <ThemeContextProvider>
       <Layout>
@@ -26,6 +26,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           <title>Devchallenges</title>
         </Head>
         <Component {...pageProps} />
+        <FooterLine />
       </Layout>
     </ThemeContextProvider>
   );
