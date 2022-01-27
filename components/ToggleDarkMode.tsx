@@ -1,53 +1,25 @@
 import * as React from "react";
 import { getThemeContext } from "../context/ThemeContext";
-import { ToggleScreen, ToggleSwitch } from "../styled-components/Toggle";
+import { ToggleScreen } from "../styled-components/Toggle";
+import Sun from "../public/sun.svg";
+import * as Moon from "../public/moon.svg";
+import Image from "next/image";
 
 const ToggleDarkMode = () => {
-  const [show, setShow] = React.useState<boolean>(!false);
   const { theme, changeTheme } = getThemeContext();
-  const Switch = () => {
-    return (
-      <ToggleSwitch>
-        <input
-          className="react-switch-checkbox"
-          id={`react-switch-new`}
-          type="checkbox"
-          checked={theme}
-          //   onClick={() => {
-          //     changeTheme();
-          //     setShow(false);
-          //   }}
-          onChange={() => {
-            changeTheme();
-            setShow(false);
-          }}
-        />
-        <label
-          onClick={() => setShow(false)}
-          className="react-switch-label"
-          htmlFor={`react-switch-new`}
-          style={{
-            border: theme ? "2px solid #ffffff" : "2px solid #111216",
-            background: !theme ? "#FFFFFF" : "#111216",
-          }}
-        >
-          <span
-            className={`react-switch-button`}
-            style={{
-              border: theme ? "1px solid #ffffff" : "1px solid #111216",
-            }}
-          >
-            <img src={`${theme ? "moon" : "sun"}.svg`} />
-          </span>
-        </label>
-      </ToggleSwitch>
-    );
-  };
+  // alert(theme);
   return (
-    <ToggleScreen value={show}>
-      <Switch />
-      <div className="icon" onClick={() => setShow(!show)}>
-        <img src="arrow.svg" />
+    <ToggleScreen onClick={() => changeTheme()}>
+      <div
+        className="image"
+        style={{ transform: `translateY(${theme ? "-50%" : "0%"})` }}
+      >
+        <div className="img1" style={{ opacity: theme ? 0 : 1 }}>
+          <Image src={Moon} alt="toggle Switch" width={35} height={35} />
+        </div>
+        <div className="img2" style={{ opacity: theme ? 1 : 0 }}>
+          <Image src={Sun} alt="toggle Switch" width={35} height={35} />
+        </div>
       </div>
     </ToggleScreen>
   );
