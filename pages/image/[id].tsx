@@ -7,7 +7,7 @@ const ShowImage = () => {
     <div style={{ position: "relative", width: "100%", paddingBottom: "20%" }}>
       <Image
         alt="Image Alt"
-        src={`/${router.query.id}`}
+        src={`/uploads/${router.query.id}`}
         layout="fill"
         objectFit="contain" // Scale your image down to fit into the container
       />

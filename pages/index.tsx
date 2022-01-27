@@ -187,7 +187,7 @@ const Home: NextPage = () => {
       <InnerContainer>
         {imageLink !== undefined ? (
           <Header>
-            <img src="done.svg" />
+            <img src="/done.svg" className="img" width={40} height={40} />
             <Title>Uploaded</Title>
           </Header>
         ) : (
@@ -200,7 +200,7 @@ const Home: NextPage = () => {
           {imageLink !== undefined ? (
             <ShowImage>
               <Image
-                src={"/tmp/" + finalLink}
+                src={"/uploads/" + finalLink}
                 alt="Image Alt"
                 // src={`/${router.query.id}`}
                 layout="fill"

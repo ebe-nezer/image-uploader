@@ -72,7 +72,7 @@ export const Header = styled.div`
   align-items: center;
   justify-content: flex-start;
   padding-bottom: 44px;
-  img {
+  .img {
     padding-bottom: 20px;
   }
 `;
