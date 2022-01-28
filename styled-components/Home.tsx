@@ -51,15 +51,26 @@ export const InnerContainer = styled.div`
   height: max-content;
 
   /* Inside auto layout */
-
+  .back__ {
+    position: relative;
+    right: -50%;
+    top: 5%;
+    font-weight: 700;
+    cursor: pointer;
+    color: ${textColor};
+    border-radius: 50%;
+    padding-left: 10px;
+    &:hover {
+      border-left: 5px solid ${textColor};
+    }
+  }
   flex: none;
   order: 0;
   flex-grow: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content
-  @media only screen and (max-width: 360px) {
+  justify-content @media only screen and (max-width: 360px) {
     width: 100%;
   }
 `;

@@ -23,8 +23,9 @@ import ToggleDarkMode from "../components/ToggleDarkMode";
 import { toast } from "react-toastify";
 import { getThemeContext } from "../context/ThemeContext";
 import { useRouter } from "next/router";
+import config from "../config";
 
-interface AxoisData extends AxiosResponse {
+export interface AxoisData extends AxiosResponse {
   data: {
     [key: string]: string | any;
   };
@@ -34,19 +35,21 @@ interface AxoisData extends AxiosResponse {
 
 const Home: NextPage = () => {
   const { theme } = getThemeContext();
-  const [imageLink, setImageLink] = React.useState<string>();
   const fileRef = React.useRef<any>(null);
-  const inputRef = React.useRef<any>(null);
+
+  const [imageLink, setImageLink] = React.useState<string>();
   const [track, setTrack] = React.useState<boolean>(false);
   const [file, setFile] = React.useState<FileList | null>();
   const [uploading, setUploading] = React.useState<boolean>(false);
   const [uploadingPercentage, setPercentage] = React.useState<number>(0);
+  const [finalLink, setFinalLink] = React.useState<string>("");
+
   const [status, setStatus] = React.useState<{ type: string; str: string }>({
     type: "",
     str: "",
   });
-  const [finalLink, setFinalLink] = React.useState<string>();
-  const createLink = (url: string) => {
+
+  const createLink = ({ url }: { url: string }) => {
     axios
       .get(url)
       .then(({ data }: AxoisData) => {
@@ -54,13 +57,9 @@ const Home: NextPage = () => {
           type: "Link Generated",
           str: "Your link has been successfully generated",
         });
-        const url =
-          process.env.NODE_ENV === "production"
-            ? "https://image-uploader-ebi10sa22.vercel.app/image/"
-            : "http://localhost:3000/image/";
 
-        setFinalLink(data.metadata.filename);
-        setImageLink(url + data.metadata.filename);
+        setFinalLink(data.path);
+        setImageLink(data.copyPath);
         setUploading(false);
         setStatus({ str: "", type: "" });
       })
@@ -95,10 +94,14 @@ const Home: NextPage = () => {
       theme: theme ? "dark" : "light",
     });
   };
+
   // upload Function
   const uploadFiles = (data: FormData) => {
-    axios
+    axios // put cloudinary post url here
       .post("/api/upload", data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
         onUploadProgress(progressEvent: any) {
           const percentCompleted = Math.round(
             (progressEvent.loaded * 100) / progressEvent.total
@@ -110,16 +113,18 @@ const Home: NextPage = () => {
         if (status === 200 || status === 201) {
           setStatus({ str: "File Uploaded", type: "Uploaded" });
 
-          // console.log("/api/image?id=" + data.file.id.toString());
-          createLink("/api/image?id=" + data.file.id.toString());
+          createLink({
+            url: "/api/image?id=" + data.filename,
+          });
           setStatus({
             type: "Generating Link",
             str: "Creating a link for your image",
           });
         }
       })
-      .catch((err) => setStatus({ type: "Error", str: err.message }));
+      .catch(() => setStatus({ type: "Error", str: "Cannot able to upload" }));
   };
+
   const formDataFunc = (file: FileList | any) => {
     setUploading(true);
     setStatus({
@@ -128,8 +133,11 @@ const Home: NextPage = () => {
     });
     const formData = new FormData();
     formData.append("files", file[0]);
+    const timestamp = Date.now() / 1000;
+    formData.append("timestamp", timestamp.toString());
     uploadFiles(formData);
   };
+
   // onDrop Func
   const onDropFunc = () => {
     const fileTypes = /jpeg|jpg|png|gif|svg|webp|apng|avif|bmp|ico|tiff/;
@@ -154,9 +162,11 @@ const Home: NextPage = () => {
       });
     }
   };
+
   const onTargetClickFunc = () => {
     fileRef.current.click();
   };
+
   const onFileInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     const data = new FormData();
     const { files } = event.target;
@@ -170,11 +180,22 @@ const Home: NextPage = () => {
     setStatus({ str: "Uploading file", type: "Uploading" });
     data.get("files") && uploadFiles(data);
   };
+
   const uploadstatus = (e: boolean) => {
     setUploading(e);
     setStatus({ str: "", type: "" });
   };
-  // alert(finalLink)
+
+  const resetFunc = () => {
+    setImageLink(undefined);
+    setTrack(false);
+    setFile(null);
+    setUploading(false);
+    setPercentage(0);
+    setFinalLink("");
+    setStatus({ str: "", type: "" });
+  };
+
   return (
     <Container>
       {uploading && (
@@ -185,6 +206,11 @@ const Home: NextPage = () => {
         />
       )}
       <InnerContainer>
+        {imageLink !== undefined && (
+          <p className="back__" onClick={() => resetFunc()}>
+            Back
+          </p>
+        )}
         {imageLink !== undefined ? (
           <Header>
             <img src="/done.svg" className="img" width={40} height={40} />
@@ -197,12 +223,11 @@ const Home: NextPage = () => {
           </Header>
         )}
         <Body dragMoment={track}>
-          {imageLink !== undefined ? (
+          {typeof finalLink === "string" && finalLink.length > 1 ? (
             <ShowImage>
               <Image
-                src={"/uploads/" + finalLink}
+                src={finalLink}
                 alt="Image Alt"
-                // src={`/${router.query.id}`}
                 layout="fill"
                 objectFit="cover"
               />
@@ -213,10 +238,9 @@ const Home: NextPage = () => {
               onFrameDragEnter={() => setTrack(true)}
               onDragOver={(a) => console.log(a)}
               onTargetClick={onTargetClickFunc}
-              onDrop={(files, event) => {
+              onDrop={(files) => {
                 setFile(files);
                 onDropFunc();
-                // console.log(files);
               }}
               onDragLeave={() => console.log("leaved")}
               onFrameDragLeave={() => setTrack(false)}
@@ -237,7 +261,7 @@ const Home: NextPage = () => {
             </FileDrop>
           )}
         </Body>
-        {imageLink === undefined ? (
+        {typeof imageLink === "undefined" ? (
           <>
             <DropLine>Or</DropLine>
             <SelectFile
