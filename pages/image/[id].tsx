@@ -29,7 +29,8 @@ const ShowImage = () => {
           objectFit="contain" // Scale your image down to fit into the container
         />
       ) : (
-        <p>Image Not Found</p>
+        // can show error
+        <p></p>
       )}
     </div>
   );
