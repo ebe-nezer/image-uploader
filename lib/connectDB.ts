@@ -1,7 +1,7 @@
 import config from "../config";
 import { MongoClient, ConnectOptions, Db } from "mongodb";
-let uri = config()?.MONGODB_URI!;
-let dbName = "myFirstDatabase";
+let uri = config.MONGODB_URI!;
+let dbName = config.MONGODB_DB!;
 
 let cachedClient: MongoClient | null = null;
 let cachedDb: Db | null = null;
