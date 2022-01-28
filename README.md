@@ -86,7 +86,7 @@ $ yarn dev
 
 <!-- - Website [your-website.com](https://{your-web-site-link}) -->
 
-- GitHub [@yebi10sa22](https://github.com/ebi10sa22)
+- GitHub [@ebi10sa22](https://github.com/ebi10sa22)
 - Linkedin [@ebenezerj-2210](https://www.linkedin.com/in/ebenezerj-2210/)
 - Instagram [@_._._ebenezer_._._](https://www.instagram.com/_._._ebenezer_._._/)
 
